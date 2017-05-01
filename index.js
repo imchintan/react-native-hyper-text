@@ -9,7 +9,7 @@ const telRegex =/([0-9+\(]{1}[0-9 +\(\)]{4,}[0-9)]{1})+/ig;
 export default class HyperText extends Component {
 
     propTypes: {
-        style : React.PropTypes.object,
+        style : Text.PropTypes.object,
         linkColor : React.PropTypes.string,
         underLine : React.PropTypes.boolean,
         linkifyTel : React.PropTypes.boolean,

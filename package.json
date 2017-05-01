@@ -1,11 +1,29 @@
 {
-  "name": "reacft-native-hypertext",
-  "version": "1.0.0",
-  "description": "",
+  "name": "react-native-hypertext",
+  "version": "0.0.1",
+  "description": "[![NPM version](https://badge.fury.io/js/react-native-hypertext.svg)](http://badge.fury.io/js/react-native-hypertext)",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Chintan Prajapati <me@chintanprajapati.com> (http://chintanprajapati.com)",
-  "license": "MIT"
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/imchintan/react-native-hypertext.git"
+  },
+  "keywords": [
+    "react",
+    "react-native",
+    "text",
+    "link",
+    "autolink",
+    "url",
+    "hyperlink",
+    "hypertext"
+  ],
+  "bugs": {
+    "url": "https://github.com/imchintan/react-native-hypertext/issues"
+  },
+  "homepage": "https://github.com/imchintan/react-native-hypertext#readme"
 }
