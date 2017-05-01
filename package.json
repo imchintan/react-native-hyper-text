@@ -1,7 +1,7 @@
 {
-  "name": "react-native-hypertext",
+  "name": "react-native-hyper-text",
   "version": "0.0.1",
-  "description": "[![NPM version](https://badge.fury.io/js/react-native-hypertext.svg)](http://badge.fury.io/js/react-native-hypertext)",
+  "description": "[![NPM version](https://badge.fury.io/js/react-native-hyper-text.svg)](http://badge.fury.io/js/react-native-hyper-text)",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -10,7 +10,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/imchintan/react-native-hypertext.git"
+    "url": "git+https://github.com/imchintan/react-native-hyper-text.git"
   },
   "keywords": [
     "react",
@@ -23,7 +23,7 @@
     "hypertext"
   ],
   "bugs": {
-    "url": "https://github.com/imchintan/react-native-hypertext/issues"
+    "url": "https://github.com/imchintan/react-native-hyper-text/issues"
   },
-  "homepage": "https://github.com/imchintan/react-native-hypertext#readme"
+  "homepage": "https://github.com/imchintan/react-native-hyper-text#readme"
 }
