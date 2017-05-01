@@ -15,7 +15,7 @@ npm i --save react-native-hyper-text
 | `linkColor` | highlight clickable text with color | `React.PropTypes.string` | `blue(#0000EE)`
 | `underLine` | highlight clickable text with underLine | `React.PropTypes.boolean` | `true`
 | `linkifyTel` | highlight telephone as a clickable text | `React.PropTypes.boolean` | `false`
-| `onPress` | func to handle click over a clickable text with parsed text as arg | `func` | Open in `browser`or `dialer`
+| `onPress` | func to handle click over a clickable text with parsed text as arg | `func` | open in `browser`or `dialer`
 | `onLongPress` | func to handle long click over a clickable text with parsed text as arg | `func` |
 
 ## Examples
