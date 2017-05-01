@@ -11,15 +11,14 @@ npm i --save react-native-hyper-text
 ## Props
 | name | desc | type | default
 | --- | --- | --- | --- |
-| `style` | text with styles | `Text.propTypes.style` |
-| `linkColor` | highlight clickable text with color | `React.PropTypes.string` | `blue(#0000EE)`
-| `underLine` | highlight clickable text with underLine | `React.PropTypes.boolean` | `true`
-| `linkifyTel` | highlight telephone as a clickable text | `React.PropTypes.boolean` | `false`
-| `onPress` | func to handle click over a clickable text with parsed text as arg | `func` | open in `browser`or `dialer`
-| `onLongPress` | func to handle long click over a clickable text with parsed text as arg | `func` |
+| `style` | text with styles | Text.propTypes.style | -
+| `linkColor` | highlight clickable text with color | string | blue(#0000EE)
+| `underLine` | highlight clickable text with underLine | boolean | true
+| `linkifyTel` | highlight telephone as a clickable text | boolean | `false`
+| `onPress` | func to handle click over a clickable text with parsed text as arg | function | open in `browser`or `dialer`
+| `onLongPress` | func to handle long click over a clickable text with parsed text as arg | function | -
 
 ## Examples
-Wrap any component that has `<Text>` (works for [nested ](https://facebook.github.io/react-native/docs/text.html#nested-text) text too) in it
 
 ```javascript
 import HyperText from 'react-native-hyper-text'
@@ -41,18 +40,7 @@ export const textLinkifyTelePhone = () =>
 
 export const regularTextLongPress = () =>
   <HyperText onLongPress={ url => alert(url) }>
-    <Text style={ { fontSize: 15 } }>
       This text will be parsed to check for clickable strings like https://github.com/imchintan/react-native-hyper-text and made clickable for long click.
-    </Text>
-  </HyperText>
-
-export const nestedText = () =>
-  <HyperText onPress={ url => alert(url) }>
-    <View>
-      <Text style={ { fontSize: 15 } }>
-        A nested Text component https://facebook.github.io/react-native/docs/text.html works equally well <Text>with https://github.com/imchintan/react-native-hyper-text</Text>
-      </Text>
-    </View>
   </HyperText>
 
 export const highlightText = () =>

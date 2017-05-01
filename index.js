@@ -3,7 +3,7 @@ import { Linking, Alert, Text } from 'react-native';
 import computeProps from './lib/computeProps';
 import _ from 'lodash';
 
-const urlRegex =/(\b((http(s)?|ftp|file):\/\/.)?(www\.)?[-a-zA-Z0-9@%_\+~#=]{2,256}(\.[a-z]{2,6})+)/ig;
+const urlRegex =/(\b((http(s)?|ftp|file):\/\/.)?(www\.)?[-a-zA-Z0-9@%_\+~#=]{2,256}(\.[a-z]{2,6})+(?:\/[\+~%\/.\w-_]*)?(\?(?:[-\+=&;%@.\w_]*)?)?#?(?:[\w]*))/ig;
 const telRegex =/([0-9+\(]{1}[0-9 +\(\)]{4,}[0-9)]{1})+/ig;
 
 export default class HyperText extends Component {
@@ -32,29 +32,25 @@ export default class HyperText extends Component {
     }
 
     _handleClick(url){
-        if(this.props.onPress){
-            this.props.onPress(url);
-        }else{
-            Linking.canOpenURL(url).then(supported => {
-              if (supported) {
-                if(url.substring(0,4) == "tel:"){
-                    // Works on both iOS and Android
-                    Alert.alert(
-                        '',
-                        'Carrier charges may apply.\nCalls are placed through your mobile carrier, not over the Internet.',
-                        [
-                            {text: 'Cancel'},
-                            {text: 'Call', onPress: () => Linking.openURL(url)},
-                        ]
-                    );
-                }else{
-                    Linking.openURL(url);
-                }
-              } else {
-                console.log('Don\'t know how to open URI: ' + url);
-              }
-            });
-        }
+        Linking.canOpenURL(url).then(supported => {
+          if (supported) {
+            if(url.substring(0,4) == "tel:"){
+                // Works on both iOS and Android
+                Alert.alert(
+                    '',
+                    'Carrier charges may apply.\nCalls are placed through your mobile carrier, not over the Internet.',
+                    [
+                        {text: 'Cancel'},
+                        {text: 'Call', onPress: () => Linking.openURL(url)},
+                    ]
+                );
+            }else{
+                Linking.openURL(url);
+            }
+          } else {
+            console.log('Don\'t know how to open URI: ' + url);
+          }
+        });
      };
 
      _getHyperTextStyle(){
@@ -71,8 +67,8 @@ export default class HyperText extends Component {
             if(a)resChildren.push(a.replace(/\\r\\n/g, "\r\n").replace(/\\\\/g,'\\'));
             resChildren.push(<Text allowFontScaling={false} key={+n+"_"+(i++)}
                 style={this._getHyperTextStyle()}
-                onPress={()=>this._handleClick("tel:"+tel)}
-                onLongPress={() => this.props.onLongPress && this.props.onLongPress("tel:"+tel)}>
+                onPress={()=>this.props.onPress?this.props.onPress(tel):this._handleClick("tel:"+tel)}
+                onLongPress={() => this.props.onLongPress && this.props.onLongPress(tel)}>
                 {tel}</Text>);
         });
         _text = _text.substring(-1,_text.length-1);
@@ -97,8 +93,8 @@ export default class HyperText extends Component {
             }
             resChildren.push(<Text allowFontScaling={false} key={"_ht_"+n+"_"+(i++)}
                 style={this._getHyperTextStyle()}
-                onPress={()=>this._handleClick(_url)}
-                onLongPress={() => this.props.onLongPress && this.props.onLongPress("tel:"+tel)}>
+                onPress={()=>this.props.onPress?this.props.onPress(_url):this._handleClick(_url)}
+                onLongPress={() => this.props.onLongPress && this.props.onLongPress(_url)}>
                 {url}</Text>);
         });
         _text = _text.substring(-1,_text.length-1);
