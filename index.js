@@ -13,16 +13,16 @@ export default class HyperText extends Component {
         linkColor : React.PropTypes.string,
         underLine : React.PropTypes.boolean,
         linkifyTel : React.PropTypes.boolean,
-        onPress : React.PropTypes.func,
-        onLongPress : React.PropTypes.func,
+        onClick : React.PropTypes.func,
+        onLongClick : React.PropTypes.func,
     }
 
     prepareRootProps() {
         let defaultProps = {};
         let props = this.props;
 
-        if(props.onPress) delete props.onPress;
-        if(props.onLongPress) delete props.onLongPress;
+        if(props.onClick) delete props.onClick;
+        if(props.onLongClick) delete props.onLongClick;
         if(props.linkColor) delete props.linkColor;
         if(props.underLine) delete props.underLine;
         if(props.linkifyTel) delete props.linkifyTel;
@@ -67,8 +67,8 @@ export default class HyperText extends Component {
             if(a)resChildren.push(a.replace(/\\r\\n/g, "\r\n").replace(/\\\\/g,'\\'));
             resChildren.push(<Text allowFontScaling={false} key={+n+"_"+(i++)}
                 style={this._getHyperTextStyle()}
-                onPress={()=>this.props.onPress?this.props.onPress(tel):this._handleClick("tel:"+tel)}
-                onLongPress={() => this.props.onLongPress && this.props.onLongPress(tel)}>
+                onPress={()=>this.props.onClick?this.props.onClick(tel):this._handleClick("tel:"+tel)}
+                onLongPress={() => this.props.onLongClick && this.props.onLongClick(tel)}>
                 {tel}</Text>);
         });
         _text = _text.substring(-1,_text.length-1);
@@ -93,8 +93,8 @@ export default class HyperText extends Component {
             }
             resChildren.push(<Text allowFontScaling={false} key={"_ht_"+n+"_"+(i++)}
                 style={this._getHyperTextStyle()}
-                onPress={()=>this.props.onPress?this.props.onPress(_url):this._handleClick(_url)}
-                onLongPress={() => this.props.onLongPress && this.props.onLongPress(_url)}>
+                onPress={()=>this.props.onClick?this.props.onClick(_url):this._handleClick(_url)}
+                onLongPress={() => this.props.onLongClick && this.props.onLongClick(_url)}>
                 {url}</Text>);
         });
         _text = _text.substring(-1,_text.length-1);
