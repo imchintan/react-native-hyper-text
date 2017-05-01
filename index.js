@@ -27,7 +27,7 @@ export default class HyperText extends Component {
         if(props.underLine) delete props.underLine;
         if(props.linkifyTel) delete props.linkifyTel;
 
-        return computeProps(this.props, defaultProps);
+        return computeProps(props, defaultProps);
 
     }
 
