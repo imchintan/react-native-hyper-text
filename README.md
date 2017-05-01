@@ -1,4 +1,4 @@
-# React Native HyperText
+# React Native Hyper Text
 [![NPM version](https://badge.fury.io/js/react-native-hyper-text.svg)](http://badge.fury.io/js/react-native-hyper-text)
 
 A `<HyperText />` component for [react-native](http://facebook.github.io/react-native/) that makes urls, telephones etc clickable
