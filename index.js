@@ -3,7 +3,7 @@ import { Linking, Alert, Text } from 'react-native';
 import computeProps from './lib/computeProps';
 import _ from 'lodash';
 
-const urlRegex =/(\b((http(s)?|ftp|file):\/\/.)?(www\.)?[-a-zA-Z0-9@%_\+~#=]{2,256}(\.[a-z]{2,6})+(?:\/[\+~%\/.\w-_]*)?(\?(?:[-\+=&;%@.\w_]*)?)?#?(?:[\w]*))/ig;
+const urlRegex =/(\b((http(s)?|ftp|file):\/\/.)?(www\.)?([-a-zA-Z0-9@%_\+~#=]{2,256}).+(\.[a-z]{2,6})+(?:\/[\+~%\/.\w-_]*)?(\?(?:[-\+=&;%@.\w_]*)?)?#?(?:[\w]*))/ig;
 const telRegex =/([0-9+\(]{1}[0-9 +\(\)]{4,}[0-9)]{1})+/ig;
 
 export default class HyperText extends Component {
@@ -80,7 +80,7 @@ export default class HyperText extends Component {
         text = text.replace(/\\/g,'\\\\').replace(/\r?\n/g, "\\r\\n");
         let resChildren = [], _text = text+"$", a = '',i=0;
         text.replace(urlRegex,(url) => {
-            [a,_text] = _text.split(new RegExp(url+'(.+)'),2);
+            [a,_text] = _text.split(new RegExp(url.replace(/\?/g, "\\?")+'(.+)'),2);
             if(a){
                 if(this.props.linkifyTel)
                     resChildren=resChildren.concat(this._linkifyTel(a,"_ht_"+n+"_"+i));

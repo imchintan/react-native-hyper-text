@@ -1,6 +1,6 @@
 {
   "name": "react-native-hyper-text",
-  "version": "0.0.3",
+  "version": "0.1.0",
   "description": "[![NPM version](https://badge.fury.io/js/react-native-hyper-text.svg)](http://badge.fury.io/js/react-native-hyper-text)",
   "main": "index.js",
   "scripts": {
