@@ -65,7 +65,7 @@ export default class HyperText extends Component {
         text.replace(telRegex,(tel) => {
             [a,_text] = _text.split(new RegExp(tel.replace(/([+\(\)])/g,(a)=>("\\"+a))+'(.+)'),2);
             if(a)resChildren.push(a.replace(/ \\r\\n /g, "\r\n").replace(/\\\\/g,'\\'));
-            resChildren.push(<Text allowFontScaling={false} key={+n+"_"+(i++)}
+            resChildren.push(<Text allowFontScaling={false} key={n+"_"+(i++)}
                 style={this._getHyperTextStyle()}
                 onPress={()=>this.props.onClick?this.props.onClick(tel):this._handleClick("tel:"+tel)}
                 onLongPress={() => this.props.onLongClick && this.props.onLongClick(tel)}>
