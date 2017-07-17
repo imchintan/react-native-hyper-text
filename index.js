@@ -3,7 +3,7 @@ import { Linking, Alert, Text } from 'react-native';
 import computeProps from './lib/computeProps';
 import _ from 'lodash';
 
-const urlRegex =/(\b((http(s)?|ftp|file):\/\/.)?(www\.)?([-a-zA-Z0-9@%_\+~#=]{2,256}).+(\.[a-z]{2,6})+(?:\/[\+~%\/.\w-_]*)?(\?(?:[-\+=&;%@.\w_]*)?)?#?(?:[\w]*))/ig;
+const urlRegex =/(\b((http(s)?|ftp|file):\/\/.)?(www\.)?([-a-zA-Z0-9@%_\+~#=]{2,256})+(\.[a-z]{2,6})+(?:\/[\+~%\/.\w-_]*)?(\?(?:[-\+=&;%@.\w_]*)?)?#?(?:[\w]*))/ig;
 const telRegex =/([0-9+\(]{1}[0-9 +\(\)]{4,}[0-9)]{1})+/ig;
 
 export default class HyperText extends Component {
@@ -64,7 +64,7 @@ export default class HyperText extends Component {
         let resChildren = [], _text = text+"$", a = '',i=0;
         text.replace(telRegex,(tel) => {
             [a,_text] = _text.split(new RegExp(tel.replace(/([+\(\)])/g,(a)=>("\\"+a))+'(.+)'),2);
-            if(a)resChildren.push(a.replace(/\\r\\n/g, "\r\n").replace(/\\\\/g,'\\'));
+            if(a)resChildren.push(a.replace(/ \\r\\n /g, "\r\n").replace(/\\\\/g,'\\'));
             resChildren.push(<Text allowFontScaling={false} key={+n+"_"+(i++)}
                 style={this._getHyperTextStyle()}
                 onPress={()=>this.props.onClick?this.props.onClick(tel):this._handleClick("tel:"+tel)}
@@ -72,12 +72,12 @@ export default class HyperText extends Component {
                 {tel}</Text>);
         });
         _text = _text.substring(-1,_text.length-1);
-        if(_text)resChildren.push(_text.replace(/\\r\\n/g, "\r\n").replace(/\\\\/g,'\\'));
+        if(_text)resChildren.push(_text.replace(/ \\r\\n /g, "\r\n").replace(/\\\\/g,'\\'));
         return resChildren;
     }
 
     _linkify(text,n){
-        text = text.replace(/\\/g,'\\\\').replace(/\r?\n/g, "\\r\\n");
+        text = text.replace(/\\/g,'\\\\').replace(/\r?\n/g, " \\r\\n ");
         let resChildren = [], _text = text+"$", a = '',i=0;
         text.replace(urlRegex,(url) => {
             [a,_text] = _text.split(new RegExp(url.replace(/\?/g, "\\?")+'(.+)'),2);
@@ -85,7 +85,7 @@ export default class HyperText extends Component {
                 if(this.props.linkifyTel)
                     resChildren=resChildren.concat(this._linkifyTel(a,"_ht_"+n+"_"+i));
                 else
-                    resChildren=resChildren.concat(a);
+                    resChildren=resChildren.concat(a.replace(/ \\r\\n /g, "\r\n").replace(/\\\\/g,'\\'));
             }
             let _url = url;
             if(url.toLowerCase().substring(0,4) != "http"){
@@ -102,7 +102,7 @@ export default class HyperText extends Component {
             if(this.props.linkifyTel)
                 resChildren=resChildren.concat(this._linkifyTel(_text,"_ht_"+n+"_"+i));
             else
-                resChildren=resChildren.concat(_text);
+                resChildren=resChildren.concat(_text.replace(/ \\r\\n /g, "\r\n").replace(/\\\\/g,'\\'));
         }
         return resChildren;
     }
